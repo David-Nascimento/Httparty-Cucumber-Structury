@@ -1,0 +1,8 @@
+## YAML Templatesss
+---
+default: -p pretty -p json -p html -p hmg
+
+html:  --format html --out=results/report.html
+json:  --format json --out=results/report.json
+
+hmg: ENVIRONMENT=hmg
