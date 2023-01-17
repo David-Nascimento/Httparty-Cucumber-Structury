@@ -1,3 +1,5 @@
 allure-results/
 
 .idea/
+
+Gemfile.lock
