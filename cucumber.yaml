@@ -1,8 +1,8 @@
-## YAML Templatesss
----
-default: -p pretty -p json -p html -p hmg
+default: -p report -p hmg -f pretty
 
 html:  --format html --out=results/report.html
 json:  --format json --out=results/report.json
+
+report: --format AllureCucumber::CucumberFormatter --out allure-results
 
 hmg: ENVIRONMENT=hmg

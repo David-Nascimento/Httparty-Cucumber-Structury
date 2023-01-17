@@ -1,6 +1,6 @@
 class User
   include HTTParty
-  basic_uri CONFIG['pet_url']
+  base_uri CONFIG["user"]['pet_url']
 
   def initialize(headers, body)
     @options = {:headers => headers, :body => body}
