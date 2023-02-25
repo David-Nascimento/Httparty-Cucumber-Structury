@@ -24,11 +24,14 @@ jobs:
       working-directory: ${{ github.workspace }}
 
     - name: Gerar relatório Allure
-      uses: fescobar/allure-report-action@v1.1.1
+      uses: simple-elf/allure-report-action@master
+      if: always()
+      id: allure-report
       with:
-        allure-version: '2.14.0'
-        results: allure-results
-        output: allure-report
+        allure_results: build/allure-results
+        gh_pages: gh-pages
+        allure_report: allure-report
+        allure_history: allure-history
 
     - name: Compactar relatório Allure em um arquivo ZIP
       run: zip -r allure-report.zip allure-report
