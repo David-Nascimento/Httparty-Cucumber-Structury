@@ -1,3 +1,4 @@
+@pipeline
 Feature: Deve ser testado todos os fluxos de usuario
 
     @create_user

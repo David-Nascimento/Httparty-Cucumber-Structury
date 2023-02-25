@@ -20,8 +20,7 @@ jobs:
 
     - name: Executar testes Cucumber com Allure
       run: |
-        bundle exec cucumber -p hmg --format AllureCucumber::CucumberFormatter --out allure-results/ -t #{args[:tags]} -f pretty
-        allure generate allure-results/ -o allure-report/
+        rake service[@pipeline]
       working-directory: ${{ github.workspace }}
 
     - name: Publicar relatório Allure

@@ -6,8 +6,3 @@ json:  --format json --out=results/report.json
 report: --format AllureCucumber::CucumberFormatter --out allure-results
 
 hmg: ENVIRONMENT=hmg
-
-## Definindo tags de execução no Github Actions
-- name: Executar testes Cucumber
-      env:
-        TAGS: "@create_user"
