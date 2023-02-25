@@ -23,8 +23,19 @@ jobs:
         rake service[@pipeline]
       working-directory: ${{ github.workspace }}
 
-    - name: Publicar relatório Allure
-      uses: peaceiris/actions-gh-pages@v3
+    - name: Gerar relatório Allure
+      uses: fescobar/allure-report-action@v1.1.1
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./allure-report
+        allure-version: '2.14.0'
+        results: allure-results
+        output: allure-report
+
+    - name: Compactar relatório Allure em um arquivo ZIP
+      run: zip -r allure-report.zip allure-report
+      working-directory: ${{ github.workspace }}
+
+    - name: Fazer upload do arquivo ZIP do relatório Allure como artefato
+      uses: actions/upload-artifact@v2
+      with:
+        name: allure-report
+        path: allure-report.zip
