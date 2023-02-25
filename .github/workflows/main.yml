@@ -1,0 +1,31 @@
+name: Executar testes Cucumber com Allure
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout código
+      uses: actions/checkout@v2
+
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7.0
+
+    - name: Instalar dependências
+      run: bundle install --jobs 4 --retry 3
+
+    - name: Executar testes Cucumber com Allure
+      run: |
+        bundle exec cucumber -p hmg --format AllureCucumber::CucumberFormatter --out allure-results/ -t ${{ github.event.inputs.tags }} -f pretty
+        allure generate allure-results/ -o allure-report/
+      working-directory: ${{ github.workspace }}
+
+    - name: Publicar relatório Allure
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./allure-report
