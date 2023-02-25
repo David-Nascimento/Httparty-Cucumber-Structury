@@ -20,7 +20,7 @@ jobs:
 
     - name: Executar testes Cucumber com Allure
       run: |
-        bundle exec cucumber -p hmg --format AllureCucumber::CucumberFormatter --out allure-results/ -t ${{ github.event.inputs.tags }} -f pretty
+        bundle exec cucumber -p hmg --format AllureCucumber::CucumberFormatter --out allure-results/ -t @create_user -f pretty
         allure generate allure-results/ -o allure-report/
       working-directory: ${{ github.workspace }}
 
